@@ -45,7 +45,7 @@ outputs[0]["text"]
 
 ## Benchmark
 
-See `bench.py` for benchmark.
+See `bench.py` and `bench_sharegpt.py` for benchmark.
 
 **Test Configuration:**
 - Hardware: RTX 4070 Laptop (8GB)
