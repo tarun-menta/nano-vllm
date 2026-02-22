@@ -51,12 +51,15 @@ class Qwen3Attention(nn.Module):
             hidden_size,
             bias=False,
         )
+        # NOTE: Hotfix for rope_scaling
+        # This works since Qwen3 doesn't use rope_scaling
+        # For some reason there's a weird dict in the HF config instead of None
         self.rotary_emb = get_rope(
             self.head_dim,
             rotary_dim=self.head_dim,
             max_position=max_position,
             base=rope_theta,
-            rope_scaling=rope_scaling,
+            rope_scaling=None,
         )
         self.attn = Attention(
             self.num_heads,
