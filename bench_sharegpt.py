@@ -32,6 +32,12 @@ def main():
         "--tensor-parallel-size", type=int, default=1, help="Tensor parallel size"
     )
     parser.add_argument(
+        "--max-num-seqs", type=int, default=512, help="Max number of sequences per batch"
+    )
+    parser.add_argument(
+        "--max-num-batched-tokens", type=int, default=16384, help="Max number of tokens per batch"
+    )
+    parser.add_argument(
         "--num-turns", type=int, default=1, help="Number of turns to sample"
     )
     args = parser.parse_args()
@@ -72,6 +78,8 @@ def main():
         model_path,
         max_model_len=args.max_model_len,
         tensor_parallel_size=args.tensor_parallel_size,
+        max_num_seqs=args.max_num_seqs,
+        max_num_batched_tokens=args.max_num_batched_tokens,
         enforce_eager=True,
     )
 
